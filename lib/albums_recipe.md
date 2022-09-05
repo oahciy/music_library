@@ -163,33 +163,66 @@ These examples will later be encoded as RSpec tests.
 # EXAMPLES
 
 # 1
-# Get all students
+# Get all albums
 
-repo = StudentRepository.new
+repo = AlbumRepository.new
 
-students = repo.all
+albums = repo.all
 
-students.length # =>  2
+albums.length # =>  3
 
-students[0].id # =>  1
-students[0].name # =>  'David'
-students[0].cohort_name # =>  'April 2022'
+albums[0].id # =>  1
+albums[0].title # =>  'Doolittle'
+albums[0].release_year # =>  '1989'
+albums[0].artist_id # =>  '1'
 
-students[1].id # =>  2
-students[1].name # =>  'Anna'
-students[1].cohort_name # =>  'May 2022'
+albums[1].id # =>  2
+albums[1].title # =>  'Surfer Rosa'
+albums[1].release_year # =>  '1988'
+albums[1].artist_id # =>  '1'
+
+albums[2].id # =>  3
+albums[2].title # =>  'Waterloo'
+albums[2].release_year # =>  '1972'
+albums[2].artist_id # =>  '2'
 
 # 2
-# Get a single student
+# Get a single album
 
-repo = StudentRepository.new
+repo = AlbumRepository.new
 
-student = repo.find(1)
+album = repo.find(1)
 
-student.id # =>  1
-student.name # =>  'David'
-student.cohort_name # =>  'April 2022'
+album.id # =>  1
+album.title # =>  'Doolittle'
+album.release_year # =>  '1989'
+album.artist_id # => '1'
 
+# 3
+# Create
+
+repo = AlbumRepository.new
+
+new_album = Album.new
+new_album.title = 'Bossanova'
+new_album.release_year = '1990'
+new_album.artist_id = '1'
+
+repo.create(new_album)
+
+# 4
+# Update
+
+repo = AlbumRepository.new
+repo.update('title', attr, 'new_value')
+# UPDATE albums SET attr = 'new_value' WHERE title = 'title';
+
+# 5
+# Delete
+
+repo = AlbumRepository.new
+repo.delete('title', 'artisit_id')
+# DELETE FROM album WHERE title = 'title' AND artist_id = 'artisit_id';
 # Add more examples for each method
 ```
 
