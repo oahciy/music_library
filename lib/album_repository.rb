@@ -1,14 +1,21 @@
+require 'album'
+
 class AlbumRepository
 
-  # Selecting all records
-  # No arguments
   def all
-    # Executes the SQL query:
-    # SELECT id, title, release_year, artist_id FROM albums;
-    return SELECT * FROM Albums;
-    # Returns an array of Album objects.
-    # [album_1, album_2, album_3]
-    # album_1 = Album.new
+    sql = 'SELECT id, title, release_year, artist_id FROM albums;'
+    result = DatabaseConnection.exec_params(sql, [])
+
+    albums = []
+    result.each do |record|
+      album = Album.new
+      album.id = record["id"]
+      album.title = record["title"]
+      album.release_year = record["release_year"]
+      album.artist_id = record["artist_id"]
+      albums << album
+    end
+    return albums
   end
 
   # Gets a single record by its ID

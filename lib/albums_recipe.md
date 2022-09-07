@@ -8,15 +8,15 @@ If the table is already created in the database, you can skip this step.
 
 Otherwise, [follow this recipe to design and create the SQL schema for your table](./single_table_design_recipe_template.md).
 
-*In this template, we'll use an example table `students`*
+*In this template, we'll use an example table `albums`*
 
 ```
 # EXAMPLE
 
-Table: students
+Table: albums
 
 Columns:
-id | name | cohort_name
+id | title | release_year | artist_id
 ```
 
 ## 2. Create Test SQL seeds
