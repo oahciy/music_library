@@ -69,4 +69,12 @@ RSpec.describe AlbumRepository do
     repo.delete(album)
     expect(repo.all.length).to eq 2
   end
+
+  it "updates an album by its attributes" do
+    repo = AlbumRepository.new
+    album = repo.all[0]
+    album.release_year = 1990
+    repo.update_by(album, 'release_year')
+    expect(repo.find(album.id).release_year).to eq '1990'
+  end
 end

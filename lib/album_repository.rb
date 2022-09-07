@@ -49,4 +49,11 @@ class AlbumRepository
     sql = "DELETE FROM albums WHERE id = #{album.id};"
     result = DatabaseConnection.exec_params(sql, [])
   end
+
+  def update_by(album, attr)
+    attr_sym = attr.to_sym
+    sql = "UPDATE albums SET #{attr} = #{album.send(attr_sym)};"
+    # https://www.notonlycode.org/12-ways-to-call-a-method-in-ruby/
+    result = DatabaseConnection.exec_params(sql, [])
+  end
 end
