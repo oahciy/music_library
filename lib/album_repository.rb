@@ -32,10 +32,11 @@ class AlbumRepository
     return album
   end
 
-  # Add more methods below for each operation you'd like to implement.
-
   def create(album)
     # INSERT INTO albums (title, release_year, artist_id) VALUES ('Lover', '2019', '3');
+    sql = "INSERT INTO albums (id, title, release_year, artist_id) VALUES 
+    (#{album.id},'#{album.title}', #{album.release_year}, #{album.artist_id});"
+    result = DatabaseConnection.exec_params(sql, [])
   end
 
   def update(album)
