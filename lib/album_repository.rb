@@ -46,6 +46,7 @@ class AlbumRepository
   end
 
   def delete(album)
-    # DELETE FROM albums WHERE title = 'album';
+    sql = "DELETE FROM albums WHERE id = #{album.id};"
+    result = DatabaseConnection.exec_params(sql, [])
   end
 end
