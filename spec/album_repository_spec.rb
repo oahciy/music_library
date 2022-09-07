@@ -54,4 +54,12 @@ RSpec.describe AlbumRepository do
     expect(albums[3].release_year).to eq '2004'
     expect(albums[3].artist_id).to eq '3'
   end
+
+  it "updates an album" do
+    repo = AlbumRepository.new
+    album = repo.all[0]
+    album.release_year = 1990
+    repo.update(album)
+    expect(repo.find(album.id).release_year).to eq '1990'
+  end
 end
