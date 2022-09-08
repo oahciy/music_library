@@ -19,16 +19,16 @@ class AlbumRepository
   end
 
   def find(id)
-    sql = "SELECT * FROM albums WHERE id = #{id};"
-    result = DatabaseConnection.exec_params(sql, [])
+    sql = "SELECT * FROM albums WHERE id = $1;"
+    para = [id]
+    result = DatabaseConnection.exec_params(sql, para)
+    record = result[0]
 
     album = Album.new
-    result.each do |record|
-      album.id = record["id"]
-      album.title = record["title"]
-      album.release_year = record["release_year"]
-      album.artist_id = record["artist_id"]
-    end
+    album.id = record["id"]
+    album.title = record["title"]
+    album.release_year = record["release_year"]
+    album.artist_id = record["artist_id"]
     return album
   end
 
