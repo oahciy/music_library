@@ -24,7 +24,7 @@ class AlbumRepository
 
   def create(album)
     sql = "INSERT INTO albums (title, release_year, artist_id) VALUES 
-    ($1,$2, $3);"
+    ($1, $2, $3);"
     para = [album.title, album.release_year, album.artist_id]
     result = DatabaseConnection.exec_params(sql, para)
     return nil
@@ -46,9 +46,9 @@ class AlbumRepository
 
   def update_by(album, attr)
     attr_sym = attr.to_sym
-    sql = "UPDATE albums SET $1 = $2 WHERE id = $3;"
+    sql = "UPDATE albums SET #{attr} = $1 WHERE id = $2;"
     # https://www.notonlycode.org/12-ways-to-call-a-method-in-ruby/
-    para = [attr, album.send(attr_sym), album.id]
+    para = [album.send(attr_sym), album.id]
     result = DatabaseConnection.exec_params(sql, para)
     return nil
   end
